@@ -51,7 +51,7 @@ class ResultServiceImpl @Autowired constructor(private val restService: RestServ
                 answers = answers.joinToString(",")
         )
         val savedResult = resultRepository.save(result)
-        return AnswersResponseDTO(currentToken, respondentId, mapper.toResultsResponseDTO(savedResult))
+        return AnswersResponseDTO(currentToken, mapper.toResultsResponseDTO(savedResult))
     }
 
     override fun getResultsByToken(token: String, page: Int, size: Int): PageDTO<ResultsResponseDTO> {

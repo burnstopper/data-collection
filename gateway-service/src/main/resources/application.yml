@@ -5,6 +5,9 @@ access:
   token: ${ACCESS_TOKEN:1234}
 
 service:
+  user:
+    url: ${USER_SERVICE_URL}
+    bearer: ${USER_SERVICE_BEARER}
   uri:
     burnout: ${BURNOUT_SERVICE_URI:http://localhost:8081}
     fatigue: ${FATIGUE_SERVICE_URI:http://localhost:8082}

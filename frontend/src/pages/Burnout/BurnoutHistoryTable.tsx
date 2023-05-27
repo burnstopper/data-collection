@@ -39,8 +39,8 @@ const BurnoutHistoryTable = ({results}: Props) => {
                             border="2px" borderColor="gray.200">
                 <Table variant="simple">
                     <Thead>
-                        <Tr>
-                            <Th padding={0} colSpan={5}>
+                        <Tr position="relative">
+                            <Th padding={0} colSpan={5} >
                                 <Text textAlign="center" bg="gray.100" fontWeight="medium" fontSize="lg"
                                       color="gray.600" paddingY="2.5">
                                     История результатов</Text>

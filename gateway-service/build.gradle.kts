@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "3.0.6"
+	id("org.springframework.boot") version "3.1.0"
 	id("io.spring.dependency-management") version "1.1.0"
 	kotlin("jvm") version "1.8.21"
 	kotlin("plugin.spring") version "1.8.21"
@@ -15,10 +15,11 @@ repositories {
 	mavenCentral()
 }
 
-extra["springCloudVersion"] = "2022.0.2"
+extra["springCloudVersion"] = "2022.0.3"
 
 dependencies {
 	implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:2.1.0")
+	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.yaml:snakeyaml:2.0")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")

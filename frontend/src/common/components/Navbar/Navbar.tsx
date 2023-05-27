@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
     chakra,
     useColorModeValue,
@@ -21,9 +21,11 @@ import {AiOutlineMenu} from "react-icons/ai";
 import {ChevronDownIcon} from "@chakra-ui/icons";
 import {NavLink, useNavigate, useSearchParams} from "react-router-dom";
 import BurnoutLogo from "../../../assets/BurnoutLogo";
-import CookiesUtils from "../../../utils/CookiesUtils";
+import {useCookies} from "react-cookie";
+import RespondentService from "../../../services/RespondentService";
 
 const Navbar = () => {
+    const [cookies, setCookie, removeCookie] = useCookies(["token", "respondent_id"])
     const bg = useColorModeValue("white", "gray.800");
     const mobileNav = useDisclosure();
     const navigate = useNavigate();
@@ -31,9 +33,10 @@ const Navbar = () => {
     const quizId = searchParams.get('quiz_id')
     const redirectUrl = searchParams.get('redirect_url')
     const removeCookies = () => {
-        CookiesUtils.remove('token')
-        window.location.reload()
+        removeCookie("token")
+        removeCookie("respondent_id")
     }
+
     const mobileNavigate = (path: string) => {
         navigate(path)
         mobileNav.onClose()
@@ -79,14 +82,23 @@ const Navbar = () => {
                             <MenuList paddingY={0}>
                                 <MenuItem paddingTop={2} roundedTop={5}>
                                     <HStack>
-                                        <Text>Идентификатор:</Text>
-                                        <Text fontWeight="medium">TODO</Text>
+                                        {cookies.respondent_id &&
+                                            <>
+                                                <Text>Идентификатор:</Text>
+                                                <Text fontWeight="medium">{cookies.respondent_id}</Text>
+                                            </>}
+                                        {!cookies.respondent_id &&
+                                            <>
+                                                <Text>Статус:</Text>
+                                                <Text fontWeight="medium">Гость</Text>
+                                            </>
+                                        }
                                     </HStack>
                                 </MenuItem>
                                 <Divider/>
-                                {/*<MenuDivider bgColor="gray.900"/>*/}
-                                <MenuItem paddingBottom={2} roundedBottom={5}
-                                          onClick={removeCookies}>Удалить данные</MenuItem>
+
+                                {cookies.respondent_id && <MenuItem paddingBottom={2} roundedBottom={5}
+                                                                    onClick={removeCookies}>Удалить данные</MenuItem>}
                             </MenuList>
                         </Menu>
                         <Box display={{base: "inline-flex", sm: "none"}}>

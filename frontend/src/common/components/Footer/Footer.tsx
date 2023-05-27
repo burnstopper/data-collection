@@ -49,19 +49,16 @@ export default function Footer() {
                 spacing={4}
                 justify={{base: 'center', md: 'space-between'}}
                 align={{base: 'center', md: 'center'}}>
-                <Text>© 2023 Burnout Stopper. All rights reserved</Text>
+                <Text>© 2023 Burnout Stopper. Все права защищены</Text>
                 <Stack direction={'row'} spacing={6}>
                     <SocialButton label={'Telegram'} href={'#'}>
                         <FaFacebook/>
-                        {/*<FaTwitter/>*/}
                     </SocialButton>
                     <SocialButton label={'Vk'} href={'#'}>
                         <FaVk/>
-                        {/*<FaYoutube/>*/}
                     </SocialButton>
                     <SocialButton label={'Facebook'} href={'#'}>
                         <FaTelegram/>
-                        {/*<FaInstagram/>*/}
                     </SocialButton>
                 </Stack>
             </Container>

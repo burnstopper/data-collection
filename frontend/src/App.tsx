@@ -14,8 +14,28 @@ import Coping from "./pages/Coping/Coping";
 import Spb from "./pages/SPB/Spb";
 import SpbTest from "./pages/SPB/SpbTest";
 import Footer from "./common/components/Footer/Footer";
+import {useCookies} from "react-cookie";
+import RespondentService from "./services/RespondentService";
+import {COOKIE_MAX_AGE} from "./data/CookieConfig";
+import {useEventListener} from "usehooks-ts";
+
+interface MessageProp {
+    token: string;
+}
 
 function App() {
+    const [cookies, setCookie, _] = useCookies(["token", "respondent_id"])
+
+    const onTokenSet = (event: MessageEvent<MessageProp>) => {
+        if (event.origin === "http://185.46.11.65:8001") {
+            setCookie("token", event.data.token, {maxAge: COOKIE_MAX_AGE})
+            RespondentService.getId(event.data.token).then((response) => {
+                setCookie("respondent_id", response.data, {maxAge: COOKIE_MAX_AGE})
+            })
+        }
+    }
+    useEventListener("message", onTokenSet)
+
     const location = useLocation()
     return (
         <Box minHeight='100vh'>

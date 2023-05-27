@@ -5,6 +5,7 @@ import com.burnoutstopper.spbservice.dto.results.ResultsIdResponseDTO
 import com.burnoutstopper.spbservice.dto.results.ResultsResponseDTO
 import com.burnoutstopper.spbservice.exception.NoSuchElementFoundException
 import com.burnoutstopper.spbservice.service.result.ResultService
+import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import jakarta.validation.constraints.Max
 import jakarta.validation.constraints.Min
 import org.slf4j.LoggerFactory
@@ -31,7 +32,8 @@ class ResultController @Autowired constructor(private val resultService: ResultS
         return response
     }
 
-    @GetMapping("/{id}") // TODO: make secure 
+    @GetMapping("/{id}")
+    @SecurityRequirement(name = "Authorization") 
     fun getResultById(@PathVariable("id") id: Long): ResponseEntity<ResultsIdResponseDTO> {
         try {
             val result = resultService.getResultById(id)
@@ -42,7 +44,8 @@ class ResultController @Autowired constructor(private val resultService: ResultS
         return ResponseEntity(null, HttpStatus.NOT_FOUND)
     }
 
-    @GetMapping("/by-quiz") // TODO: make secure
+    @GetMapping("/by-quiz")
+    @SecurityRequirement(name = "Authorization")
     fun getResultsByQuizId(@RequestParam("quiz_id") quizId: Int,
                            @RequestParam("respondent_id", required = false) respondentId: Int?): List<ResultsIdResponseDTO> {
 
@@ -51,7 +54,8 @@ class ResultController @Autowired constructor(private val resultService: ResultS
         return response
     }
 
-    @GetMapping("/exists") // TODO: make secure
+    @GetMapping("/exists")
+    @SecurityRequirement(name = "Authorization")
     fun exists(@RequestParam("quiz_id") quizId: Int,
                @RequestParam("respondent_id", required = false) respondentId: Int?): Boolean {
         return resultService.existsByQuizAndRespondent(quizId, respondentId)

@@ -7,10 +7,7 @@ import java.time.OffsetDateTime
 data class AnswersResponseDTO(
     @JsonProperty("token")
     val token: String,
-
-    @JsonProperty("respondent_id")
-    val respondentId: Int,
-
+    
     @JsonProperty("result")
     val result: ResultsResponseDTO
 )

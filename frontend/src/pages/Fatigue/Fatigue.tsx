@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {FatigueResult} from "./models/FatigueResult";
 import FatigueService from "../../services/FatigueService";
 import TestCard from "../../common/components/TestCard/TestCard";
@@ -6,10 +6,11 @@ import Pagination from "../../common/components/Pagination/Pagination";
 import {Box, Flex, Spacer} from "@chakra-ui/react";
 import FatigueHistoryTable from "./FatigueHistoryTable";
 import {FATIGUE_BODY, FATIGUE_INTRO, FATIGUE_TITLE} from "../../data/Fatigue/Text";
-import CookiesUtils from "../../utils/CookiesUtils";
 import {useSearchParams} from "react-router-dom";
+import {useCookies} from "react-cookie";
 
 const Fatigue = () => {
+    const [cookies] = useCookies(["token", "respondent_id"])
     const [currentPage, setCurrentPage] = React.useState<number>(1);
     const [pageSize, _] = React.useState(6);
     const [total, setTotal] = React.useState(1);
@@ -18,17 +19,15 @@ const Fatigue = () => {
     const quizId = searchParams.get('quiz_id')
     const redirectUrl = searchParams.get('redirect_url')
 
-    React.useEffect(() => {
-        const token = CookiesUtils.get("token")
-        if (token === null) {
+    useEffect(() => {
+        if (cookies.token === null) {
             return
         }
-        FatigueService.getResults(token, currentPage, pageSize).then((response) => {
+        FatigueService.getResults(cookies.token, currentPage, pageSize).then((response) => {
             setResults(response.data.data)
             setTotal(response.data.total)
         })
     }, [currentPage]);
-
 
     return (
         <Box>
