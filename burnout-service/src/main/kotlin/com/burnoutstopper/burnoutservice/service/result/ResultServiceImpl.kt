@@ -25,21 +25,15 @@ import kotlin.math.sqrt
 class ResultServiceImpl @Autowired constructor(private val restService: RestService,
                                                private val resultRepository: ResultRepository,
                                                private val mapper: Mapper) : ResultService {
-
     override fun saveResult(answersRequestDTO: AnswersRequestDTO): AnswersResponseDTO {
-        var currentToken = answersRequestDTO.token
-        if (currentToken.isBlank()) {
-            currentToken = restService.newRespondent()
-        }
-
-        val respondentId = restService.getRespondentId(currentToken)
         val answers = answersRequestDTO.answers
-
         val exhaustion = getExhaustion(answers)
         val depersonalization = getDepersonalization(answers)
         val reduction = getReduction(answers)
         val integralIndex = getIntegralIndex(exhaustion, depersonalization, reduction)
-
+        
+        val currentToken = answersRequestDTO.token
+        val respondentId = if (currentToken.isBlank()) -1 else restService.getRespondentId(currentToken)
         val result = Result(
                 respondentId = respondentId,
                 dateTime = OffsetDateTime.now(ZoneOffset.UTC),
@@ -50,6 +44,10 @@ class ResultServiceImpl @Autowired constructor(private val restService: RestServ
                 integralIndex = integralIndex,
                 answers = answers.joinToString(",")
         )
+        if(respondentId == -1) {
+            return AnswersResponseDTO(currentToken, mapper.toResultsResponseDTO(result))
+        }
+        
         val savedResult = resultRepository.save(result)
         return AnswersResponseDTO(currentToken, mapper.toResultsResponseDTO(savedResult))
     }

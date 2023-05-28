@@ -15,32 +15,28 @@ import {useNavigate} from "react-router-dom";
 const Main = () => {
     const navigate = useNavigate()
     return (
-        <Container maxW='7xl'>
+        <Container maxW='8xl'>
             <Stack
                 align={'center'}
                 spacing={{base: 8, md: 10}}
                 py={{base: 6, md: 8}}
                 direction={{base: 'column', md: 'row'}}>
-                <Stack flex={1} spacing={{base: 5, md: 10}}>
+                <Stack flex={1} spacing={{base: 3, md: 3}}>
                     <Heading
-                        lineHeight={1.1}
                         fontWeight={600}
-                        fontSize={{base: '4xl', sm: '4xl', lg: '6xl'}}>
+                        fontSize={{base: '4xl', sm: '4xl', lg: '5xl'}}>
                         <Text
                             as={'span'}>
-                            Write once,
-                        </Text>
-                        <br/>
-                        <Text as={'span'} color={'brand.400'}>
-                            use everywhere!
+                            Эмоциональное выгорание
                         </Text>
                     </Heading>
-                    <Text color={'gray.500'}>
-                        Snippy is a rich coding snippets app that lets you create your own
-                        code snippets, categorize them, and even sync them in the cloud so
-                        you can use them anywhere. All that is free!
+                    <Text fontSize={'lg'} color={'gray.500'}>
+                        — это состояние истощения, при котором эмоции человека притупляются.
+                        Данный тест поможет вам распознать и понять эту проблему,
+                        чтобы вы могли принять меры для своего собственного самоухода.
                     </Text>
                     <Stack
+                        paddingTop={2}
                         spacing={{base: 4, sm: 6}}
                         direction={{base: 'column', sm: 'row'}}>
                         <Button
@@ -55,15 +51,6 @@ const Main = () => {
                             onClick={() => navigate('/burnout')}>
                             Пройти тест
                         </Button>
-                        {/*<Button*/}
-                        {/*    position='static'*/}
-                        {/*    rounded={'full'}*/}
-                        {/*    size={'lg'}*/}
-                        {/*    fontWeight={'normal'}*/}
-                        {/*    px={6}*/}
-                        {/*    leftIcon={<PlayIcon h={4} w={4} color={'gray.300'} />}>*/}
-                        {/*    How It Works*/}
-                        {/*</Button>*/}
                     </Stack>
                 </Stack>
                 <Flex
@@ -78,8 +65,8 @@ const Main = () => {
                             alt={'Stress Image'}
                             fit={'cover'}
                             align={'center'}
-                            width={{base: '80%', md: '90%'}}
-                            height={{base: '80%', md: '90%'}}
+                            width={{base: '80%', md: '80%'}}
+                            height={{base: '80%', md: '80%'}}
                             // height={'100%'}
                             src={StressImage}
 
