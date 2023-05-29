@@ -45,12 +45,12 @@ const CopingResultCard = ({result}: Props) => {
                         <Tr>
                             <Td fontWeight="medium">Конфронтация</Td>
                             <Td>{result.confrontation}</Td>
-                            <Td>{result.confrontation_tpoint}%</Td>
+                            <Td>{result.confrontation_tpoint}</Td>
                         </Tr>
                         <Tr>
                             <Td fontWeight="medium">Дистанцирование</Td>
                             <Td>{result.distancing}</Td>
-                            <Td>{result.distancing_tpoint}%</Td>
+                            <Td>{result.distancing_tpoint}</Td>
                         </Tr>
                         <Tr>
                             <Td fontWeight="medium">Самоконтроль</Td>

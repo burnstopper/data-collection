@@ -92,7 +92,7 @@ const CopingHistoryTable = ({results}: Props) => {
                                 {/*<Td padding={1}>{strategyLevel(res.problem_solving_planning_tpoint)}</Td>*/}
                                 {/*<Td padding={1}>{strategyLevel(res.positive_reassessment_tpoint)}</Td>*/}
                                 <Td padding={1}><Button colorScheme="brand"
-                                            onClick={() => showModal(res)}>Подробнее</Button></Td>
+                                                        onClick={() => showModal(res)}>Подробнее</Button></Td>
                             </Tr>
                         ))}
                     </Tbody>
@@ -129,12 +129,12 @@ const CopingHistoryTable = ({results}: Props) => {
                                         <Tr>
                                             <Td fontWeight="medium">Конфронтация</Td>
                                             <Td>{result.confrontation}</Td>
-                                            <Td>{result.confrontation_tpoint}%</Td>
+                                            <Td>{result.confrontation_tpoint}</Td>
                                         </Tr>
                                         <Tr>
                                             <Td fontWeight="medium">Дистанцирование</Td>
                                             <Td>{result.distancing}</Td>
-                                            <Td>{result.distancing_tpoint}%</Td>
+                                            <Td>{result.distancing_tpoint}</Td>
                                         </Tr>
                                         <Tr>
                                             <Td fontWeight="medium">Самоконтроль</Td>

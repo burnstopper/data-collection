@@ -45,7 +45,7 @@ const SpbHistoryTable = ({results}: Props) => {
                 <Table variant="simple">
                     <Thead>
                         <Tr>
-                            <Th padding={0} colSpan={5}>
+                            <Th padding={0} colSpan={7}>
                                 <Text textAlign="center" bg="gray.100" fontWeight="medium" fontSize="lg"
                                       color="gray.600" paddingY="2.5">
                                     История результатов</Text>
