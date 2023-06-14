@@ -7,7 +7,7 @@ import {
     VStack,
     CloseButton
 } from '@chakra-ui/react'
-import {useNavigate, useSearchParams} from "react-router-dom";
+import {useSearchParams} from "react-router-dom";
 import {useNavigateParams} from "../../../hooks/useNavigateParams";
 
 interface Props {

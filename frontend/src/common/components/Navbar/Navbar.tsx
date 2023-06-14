@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
     chakra,
     useColorModeValue,
@@ -22,7 +22,6 @@ import {ChevronDownIcon} from "@chakra-ui/icons";
 import {NavLink, useNavigate, useSearchParams} from "react-router-dom";
 import BurnoutLogo from "../../../assets/BurnoutLogo";
 import {useCookies} from "react-cookie";
-import RespondentService from "../../../services/RespondentService";
 
 const Navbar = () => {
     const [cookies, setCookie, removeCookie] = useCookies(["token", "respondent_id"])
@@ -35,6 +34,7 @@ const Navbar = () => {
     const removeCookies = () => {
         removeCookie("token")
         removeCookie("respondent_id")
+        window.location.reload();
     }
 
     const mobileNavigate = (path: string) => {
